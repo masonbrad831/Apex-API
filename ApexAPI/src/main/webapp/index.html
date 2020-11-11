@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Apex Legends API</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+
+<div class="header">
+  <h1>Apex Legends API</h1>
+</div>
+
+<h2> You must login in order to edit any files</h2>
+
+
+<form onsubmit="return false;">  
+    <div class="login-container">
+    <label><br>Username</b></label>
+    <input type="text" placeholder="Enter Username" id="username" required>
+    <label><br>Password</b></label>
+    <input type="password" placeholder="Enter Password" id="password" required><br>
+    <button class="login" onclick="login();">Login</button>
+    </div>
+  </form>
+
+  <p><br /></p>
+  <p><br /></p>
+  <p><br /></p>
+  <p><br /></p>
+
+
+<div>
+    <h4> Results</h4>
+    <nav>
+        <ul id = "tableList">
+
+        </ul>
+    </nav>
+</div>
+
+
+
+<!-------------------Search By ID------------- -->
+
+<h3>Search</h3>
+
+
+<button class="accordion">Search By ID</button>
+<div class="panel">
+    <form onsubmit="return false;" >
+        <label>Select Id to search</label>
+        <input type="search" placeholder="ID.." id="searchId">
+        <button onclick="getAbilitiesById();">Show Abilities</button>
+        <button onclick="getWeaponsById();">Show Weapons</button>
+        <button onclick="getLegendsById();"> Show Legends</button>
+        <button onclick="getMapsById();"> Show Maps </button>
+        <button onclick="clearResults();">Clear Results</button>
+    </form>
+</div>
+
+
+<!-------------------Search By Table------------- -->
+
+
+<!-- <button class="accordion">Search By Table</button>
+<div class="panel">
+
+
+    <div>
+    <form onsubmit="return false;">
+        <select name="table" id="tableNames">
+            <option value="maps">Maps</option>
+            <option value="legends">Legends</option>
+            <option value="weapons">Weapons</option>
+            <option value="Abilities">Abilities</option>
+        </select>
+        <button onclick="getTable();">Get Results</button>
+    </form>
+    </div>
+
+</div>
+ -->
+
+
+<button class="accordion">Search By Table</button>
+<div class="panel">
+    <div>
+    <form onsubmit="return false;">
+        <label>Choose a Table to Search</label>
+        <button onclick="getAbilities();">Show Abilities</button>
+        <button onclick="getWeapons();">Show Weapons</button>
+        <button onclick="getLegends();"> Show Legends</button>
+        <button onclick="getMaps();"> Show Maps </button>
+        <button onclick="clearResults();">Clear Results</button>
+    </form>
+    </div>
+</div>
+
+
+
+<!-------------------CREATE LEGENDS------------- -->
+
+
+<h3>Create</h3>
+<button class="accordion">Legends</button>
+<div class="panel">
+
+    <div class="container">
+        <form onsubmit="return false;">
+            <div class="row">
+                <div class="col-25">
+                    <label>Legend's Name</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="legendName" placeholder="Legend Name..">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label>Passive Ability</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="passive" placeholder="Passive Ability..">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label>Tactical Ability</label>
+                </div>
+                <div class="col-75">
+                    <input type="text"  id="tactical" placeholder="Tactical Ability..">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label>Ultimate Ability</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="ultimate" placeholder="Ultimate Ability..">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label>Description</label>
+                </div>
+                <div class="col-75">
+                    <textarea id="legendDescription" placeholder="Description.." style="height:200px"></textarea>
+                </div>
+            </div>
+
+            <div class="row">
+                <button onclick="createLegend();">Create</button>
+            </div>
+
+        </form>
+    </div>
+
+</div>
+
+<!-------------------CREATE WEAPONS------------- -->
+<button class="accordion">Weapons</button>
+<div class="panel">
+    <div class="container">
+        <form onsubmit="return false;">
+            <div class="row">
+                <div class="col-25">
+                    <label >Weapon's Name</label>
+                </div>
+                <div class="col-75">
+                    <input type="text"id="weaponName" placeholder="Weapon Name..">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label>Weapon's Class</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="weaponClass" placeholder="Weapon Class..">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label>Ammo Type</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="ammoType" placeholder="Ammo Type..">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label>Body Damage</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="bodyDamage" placeholder="Body Damage..">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label>Head Damage</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="headDamage" placeholder="Head Damage..">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label>Leg Damage</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="legDamage" placeholder="Leg Damage..">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label >MagSize</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="magSize" placeholder="Mag Size..">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label>Body DPS</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="bodyDPS" placeholder="Body DPS..">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label>RPM</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="RPM" placeholder="RPM..">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label>Fire Modes</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="firemodes" placeholder="Ex: Single, Burst..">
+                </div>
+            </div>
+
+            <div class="row">
+                <button onclick="createWeapons();">Create</button>
+            </div>
+
+        </form>
+    </div>
+
+</div>
+</div>
+
+
+
+
+
+
+
+<!-------------------CREATE ABILITIES------------- -->
+
+
+<button class="accordion">Abilities</button>
+<div class="panel">
+
+    <div class="container">
+        <form onsubmit="return false;">
+            <div class="row">
+                <div class="col-25">
+                    <label>Legend's ID</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="legendID" placeholder="Legend's ID..">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label>Ability Name</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="abilityName" placeholder="Ability Name..">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label>Description</label>
+                </div>
+                <div class="col-75">
+                    <textarea id="abilityDescription" placeholder="Description.." style="height:200px"></textarea>
+                </div>
+            </div>
+
+            <div class="row">
+                <button onclick="createAbility();">Create</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+
+<!-------------------CREATE MAPS------------- -->
+
+
+<button class="accordion">Maps</button>
+<div class="panel">
+    <div class="container">
+        <form onsubmit="return false;">
+            <label >Map Name</label>
+            <input type="text" id="mapName" placeholder="Map Name..">
+            <button onclick="createMap();">CREATE</button>
+        </form>
+    </div>
+</div>
+
+
+<!-------------------DELETE BY ID------------- -->
+
+<h3>Delete</h3>
+<button class="accordion">Delete By ID</button>
+<div class="panel">
+    <form onsubmit="return false;" >
+        <label>Choose a Table to Delete From</label>
+        <input placeholder="ID to delete" id="theID">
+        <button onclick="deleteAbilities();">Delete Abilities</button>
+        <button onclick="deleteWeapons();">Delete Weapons</button>
+        <button onclick="deleteLegends();">Delete Legends</button>
+        <button onclick="deleteMaps();">Delete Maps </button>
+    </form>
+</div>
+
+
+<!-------------------UPDATE------------- -->
+
+
+<h3>Update</h3>
+<button class="accordion">Update</button>
+<div class="panel">
+    <div class="container">
+        <form onsubmit="return false;">
+            <label>Table Name</label>
+            <input type="text" id="updateTableName" placeholder="Table Name..">
+            <label>Column Name</label>
+            <input type="text" id="columnName" placeholder="Column Name..">
+            <label>Value</label>
+            <input type="text" id="value" placeholder="Value..">
+            <label>ID to Update</label>
+            <input type="text" id="updateID" placeholder="ID to update..">
+            <button onclick="update();">UPDATE</button>
+        </form>
+    </div>
+</div>
+
+</body>
+<script src="script.js"></script>
+</html>
